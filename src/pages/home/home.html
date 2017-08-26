@@ -1,18 +1,35 @@
-<ion-header>
-  <ion-navbar>
+<ion-header no-border>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>A Lot of To-Dos</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="!todos.length" text-center>
+      No to-do yet. Add some!
+    </ion-item>
+    <ion-item *ngFor="let item of todos">
+      <ion-label text-wrap>{{ item.description }}</ion-label>
+      <ion-checkbox color="secondary" [(ngModel)]="item.archived" (ionChange)="markAsDone(item)"></ion-checkbox>
+    </ion-item>
+    <ion-item>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+    </ion-item>
+  </ion-list>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input type="text" [(ngModel)]="todo.description" placeholder="What do you want to do?"></ion-input>
+    <ion-buttons end>
+      <button ion-button (click)="addToDo(todo)" [disabled]="!todo.description">
+        Add
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

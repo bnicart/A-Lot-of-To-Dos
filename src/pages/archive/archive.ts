@@ -6,43 +6,35 @@ import { AdMobProProvider } from '../../providers/admob-pro/admob-pro';
 
 @IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-archive',
+  templateUrl: 'archive.html',
 })
-export class HomePage {
+export class ArchivePage {
   todos:Array<any> = [];
-  todo:any = {};
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public ToDo: ToDoProvider,
-              private toastCtrl: ToastController,
-              private adMobPro: AdMobProProvider) {
+    public navParams: NavParams,
+    public ToDo: ToDoProvider,
+    private toastCtrl: ToastController,
+    private adMobPro: AdMobProProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+    console.log('ionViewDidLoad ArchivePage');
     this.loadToDos();
   }
 
   loadToDos() {
-     this.ToDo.all().then(data => {
+     this.ToDo.all('archived').then(data => {
        this.todos = data;
        this.adMobPro.showBanner();
-
      });
   }
 
-  addToDo(todo) {
-    todo.status = 'active';
-    this.ToDo.add(Object.assign({}, todo)).then(data => this.todos = data );
-    this.todo.description = "";
-  }
-
-  markAsDone(todo) {
-    this.ToDo.markAsDone(todo).then(data => {
+  markAsUndone(todo) {
+    this.ToDo.markAsUndone(todo).then(data => {
       this.todos = data;
-      this.presentToast("Task finished");
+      this.presentToast("Task marked as active");
     });
   }
 
@@ -59,5 +51,4 @@ export class HomePage {
 
     toast.present();
   }
-
 }
