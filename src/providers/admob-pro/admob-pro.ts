@@ -17,12 +17,12 @@ export class AdMobProProvider {
   */
   admobID = {
     android: {
-      banner: 'ca-app-pub-9392880126548726/2587275489',
-      interstitial: 'ca-app-pub-9392880126548726/6482110859',
+      banner: 'ca-app-pub-9392880126548726/6630491695',
+      interstitial: 'ca-app-pub-9392880126548726/2560218899',
     },
     ios: {
-      banner: 'ca-app-pub-9392880126548726/2587275489',
-      interstitial: 'ca-app-pub-9392880126548726/6482110859',
+      banner: 'ca-app-pub-9392880126548726/6630491695',
+      interstitial: 'ca-app-pub-9392880126548726/2560218899',
     }
   };
 
